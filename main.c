@@ -18,6 +18,7 @@ typedef struct t
 typedef struct n
 {
 	Task task;
+	int delay;
 	node *next_node;
 }node;
 
@@ -31,6 +32,7 @@ void QueTask(Task);
 void task1(void);
 
 
+Task running_task;
 
 // Function to push according to priority
 void QueTask(Task task)
@@ -42,6 +44,8 @@ void QueTask(Task task)
 		node* current_node;
 		current_node = (node*)malloc(sizeof(node));
 		current_node->task = task;
+		current_node->delay = 0; /*ready task*/
+		current_node->next_node = NULL;
 
 		node* start = ReadyQueue->queue_head;
 		if (ReadyQueue->queue_head == 0) /*first node*/
@@ -76,16 +80,75 @@ void QueTask(Task task)
 void Dispatch()
 {
 	void(*func_ptr)(void);
-	Task temp_task;
-	temp_task = ReadyQueue->queue_head->task;
+	//Task temp_task;
+	running_task = ReadyQueue->queue_head->task;
+
 	//func_ptr = ReadyQueue->queue_head->task.func_ptr;
-	ReadyQueue->queue_head = ReadyQueue->queue_head->next_node;
-	temp_task.func_ptr();
+	if (ReadyQueue->queue_head->next_node != NULL) {
+		ReadyQueue->queue_head = ReadyQueue->queue_head->next_node;
+	}
+	else
+	{
+		ReadyQueue->queue_head = 0;
+	}
+	running_task.func_ptr();
 }
 
+void QueDelayedTask(Task task, int delay)
+{
+
+	node* current_node;
+	current_node = (node*)malloc(sizeof(node));
+	current_node->task = task;
+	current_node->delay = delay;
+	current_node->next_node = NULL;
+
+	/*Delayed queue is sorted ascendingly*/
+	node* start = DelayedQueue->queue_head;
+	if (DelayedQueue->queue_head == 0) /*first node*/
+	{
+		DelayedQueue->queue_head = current_node;
+	}
+	else if (DelayedQueue->queue_head->delay > delay) /*head has greater delay than current*/
+	{
+		// Insert New Node before head
+		current_node->next_node = DelayedQueue->queue_head;
+		DelayedQueue->queue_head = current_node;
+	}
+	else
+	{
+		while (start->next_node != NULL && start->next_node->delay < delay) /*traverse till find the  right position*/
+		{
+			start = start->next_node;
+		}
+
+		/*at end or middle*/
+		current_node->next_node = start->next_node;
+		start->next_node = current_node;
+	}
+
+
+}
+
+void ReRunMe(int delay)
+{
+	if (delay == 0)
+	{
+		QueTask(running_task);
+	}
+	else if (delay > 0) /*enqueue in DelayedQueue based on delay time*/
+	{
+		QueDelayedTask(running_task, delay);
+	}
+	else
+	{
+		printf("Delay is invalid !");
+	}
+}
 
 void task1() {
 	printf("this is task 1 :) \n");
+	ReRunMe(0);
 }
 
 void task2() {
@@ -144,6 +207,8 @@ int main()
 	Dispatch(); 
 	Dispatch();
 	Dispatch();
+	Dispatch(); /*task 1 should run again*/
+
 	//printf(ReadyQueue->queue_head->task.Task_name);
 	//ReadyQueue->queue_head->task.func_ptr();
 
