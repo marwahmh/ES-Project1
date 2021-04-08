@@ -35,48 +35,65 @@ void task1(void);
 // Function to push according to priority
 void QueTask(Task task)
 {
-	// Create new Node
-
-	node* current_node;
-	current_node = (node*)malloc(sizeof(node));
-	current_node->task = task;
-
-	node* start = ReadyQueue->queue_head;
-	if (ReadyQueue->queue_head == 0) /*first node*/
+	if (task.priority <= 8)
 	{
-	ReadyQueue->queue_head = current_node;
-	}
-	else if (ReadyQueue->queue_head->task.priority < task.priority) /*head has less priority than current*/
-	{
-		// Insert New Node before head
-		current_node->next_node = ReadyQueue->queue_head;
-		ReadyQueue->queue_head = current_node;
+		// Create new Node
+
+		node* current_node;
+		current_node = (node*)malloc(sizeof(node));
+		current_node->task = task;
+
+		node* start = ReadyQueue->queue_head;
+		if (ReadyQueue->queue_head == 0) /*first node*/
+		{
+			ReadyQueue->queue_head = current_node;
+		}
+		else if (ReadyQueue->queue_head->task.priority < task.priority) /*head has less priority than current*/
+		{
+			// Insert New Node before head
+			current_node->next_node = ReadyQueue->queue_head;
+			ReadyQueue->queue_head = current_node;
+		}
+		else
+		{
+			while (start->next_node != NULL && start->next_node->task.priority > task.priority) /*traverse till find the  right position*/
+			{
+				start = start->next_node;
+			}
+
+			/*at end or middle*/
+			current_node->next_node = start->next_node;
+			start->next_node = current_node;
+		}
 	}
 	else
 	{
-		while (start->next_node != NULL && start->next_node->task.priority > task.priority) /*traverse till find the  right position*/
-		{
-			start = start->next_node;
-		}
-
-		/*at end or middle*/
-		current_node->next_node= start->next_node;
-		start->next_node = current_node;
+		printf(task.Task_name);
+		printf( " has priority greater than 8");
 	}
 }
 
+void Dispatch()
+{
+	void(*func_ptr)(void);
+	Task temp_task;
+	temp_task = ReadyQueue->queue_head->task;
+	//func_ptr = ReadyQueue->queue_head->task.func_ptr;
+	ReadyQueue->queue_head = ReadyQueue->queue_head->next_node;
+	temp_task.func_ptr();
+}
 
 
 void task1() {
-	printf("HIiii \n");
+	printf("this is task 1 :) \n");
 }
 
 void task2() {
-	printf("KKKKKK \n");
+	printf("this is task 2 hellooo \n");
 }
 
 void task3() {
-	printf("qqqqqq \n");
+	printf("this is task 3 hiii \n");
 }
 
 void Init()
@@ -101,12 +118,12 @@ int main()
 	A.Task_name = "Task A";
 
 	Task B;
-	B.priority = 3;
+	B.priority = 2;
 	B.func_ptr = task2;
 	B.Task_name = "Task B";
 
 	Task C;
-	C.priority = 2;
+	C.priority = 3;
 	C.func_ptr = task3;
 	C.Task_name = "Task C";
 
@@ -114,18 +131,21 @@ int main()
 
 	QueTask(A);
 
-	printf(ReadyQueue->queue_head->task.Task_name);
-	ReadyQueue->queue_head->task.func_ptr();
+	//printf(ReadyQueue->queue_head->task.Task_name);
+	//ReadyQueue->queue_head->task.func_ptr();
 
 	QueTask(B);
 
-	printf(ReadyQueue->queue_head->task.Task_name);
-	ReadyQueue->queue_head->task.func_ptr();
+	//printf(ReadyQueue->queue_head->task.Task_name);
+	//ReadyQueue->queue_head->task.func_ptr();
 
 	QueTask(C);
 
-	printf(ReadyQueue->queue_head->task.Task_name);
-	ReadyQueue->queue_head->task.func_ptr();
+	Dispatch(); 
+	Dispatch();
+	Dispatch();
+	//printf(ReadyQueue->queue_head->task.Task_name);
+	//ReadyQueue->queue_head->task.func_ptr();
 
 	system("pause");
 	return 0;
