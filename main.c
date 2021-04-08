@@ -110,7 +110,7 @@ int main()
 	C.func_ptr = task3;
 	C.Task_name = "Task C";
 
-
+	Init();
 
 	QueTask(A);
 
