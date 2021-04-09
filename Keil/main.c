@@ -81,7 +81,7 @@ static void MX_USART1_UART_Init(void);
 
 	
 void task1() {
-		HAL_Delay(2000);
+	//	HAL_Delay(2000);
 
 	//printf("this is task 1 :) \n");
 	for (int i = 1; i<=20;i++) // toggle
@@ -89,7 +89,7 @@ void task1() {
 		 HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_3);
 		 HAL_Delay(250);
 	 }
-	ReRunMe(3);
+	ReRunMe(60);
 }
 
 void task2() {
@@ -175,12 +175,12 @@ int main(void)
 	//printf(ReadyQueue->queue_head->task.Task_name);
 	//ReadyQueue->queue_head->task.func_ptr();
 
-	QueTask(B);
+	//QueTask(B);
 
 	//printf(ReadyQueue->queue_head->task.Task_name);
 	//ReadyQueue->queue_head->task.func_ptr();
 
-	QueTask(C);
+	//QueTask(C);
 
 	while (1) {
 		Dispatch();
