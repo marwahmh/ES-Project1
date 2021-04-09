@@ -1,5 +1,8 @@
 #include <stdio.h>
 #include <string.h>
+#include <time.h>
+
+#define TRUE 1
 
 typedef struct t Task;
 typedef struct n node;
@@ -7,6 +10,9 @@ typedef struct q Queue;
 
 Queue* ReadyQueue;
 Queue* DelayedQueue;
+
+int count = 0;
+
 
 typedef struct t
 {
@@ -30,9 +36,34 @@ typedef struct q
 
 void QueTask(Task);
 void task1(void);
+void DecrementDelayed();
+void setTimeout(int );
 
 
 Task running_task;
+
+//
+//void setTimeout(int milliseconds)
+//{
+//	/*If milliseconds is less or equal to 0*/
+//	/*will be simple return from function without throw error*/
+//	if (milliseconds <= 0) {
+//		fprintf(stderr, "Count milliseconds for timeout is less or equal to 0\n");
+//		return;
+//	}
+//
+//	// a current time of milliseconds
+//	int milliseconds_since = clock() * 1000 / CLOCKS_PER_SEC;
+//
+//	// needed count milliseconds of return from this timeout
+//	int end = milliseconds_since + milliseconds;
+//
+//	// wait while until needed time comes
+//	do {
+//		milliseconds_since = clock() * 1000 / CLOCKS_PER_SEC;
+//	} while (milliseconds_since <= end);
+//}
+//
 
 // Function to push according to priority
 void QueTask(Task task)
@@ -81,17 +112,23 @@ void Dispatch()
 {
 	void(*func_ptr)(void);
 	//Task temp_task;
-	running_task = ReadyQueue->queue_head->task;
+	if (ReadyQueue->queue_head != 0) {
+		running_task = ReadyQueue->queue_head->task;
 
-	//func_ptr = ReadyQueue->queue_head->task.func_ptr;
-	if (ReadyQueue->queue_head->next_node != NULL) {
-		ReadyQueue->queue_head = ReadyQueue->queue_head->next_node;
+		//func_ptr = ReadyQueue->queue_head->task.func_ptr;
+		if (ReadyQueue->queue_head->next_node != NULL) {
+			ReadyQueue->queue_head = ReadyQueue->queue_head->next_node;
+		}
+		else
+		{
+			ReadyQueue->queue_head = 0;
+		}
+		running_task.func_ptr();
 	}
 	else
 	{
-		ReadyQueue->queue_head = 0;
+		printf("IDLE");
 	}
-	running_task.func_ptr();
 }
 
 void QueDelayedTask(Task task, int delay)
@@ -103,7 +140,7 @@ void QueDelayedTask(Task task, int delay)
 	current_node->delay = delay;
 	current_node->next_node = NULL;
 
-	/*Delayed queue is sorted ascendingly*/
+	/*Delayed queue is sorted ascendingly according to delay time*/
 	node* start = DelayedQueue->queue_head;
 	if (DelayedQueue->queue_head == 0) /*first node*/
 	{
@@ -127,8 +164,37 @@ void QueDelayedTask(Task task, int delay)
 		start->next_node = current_node;
 	}
 
+	//DecrementDelayed();
 
 }
+
+void DecrementDelayed()
+{
+	node* start = DelayedQueue->queue_head;
+
+	 /*if 50 msec passed*/
+	//setTimeout(50);
+	while(count<=3)  /*to simulate the tick period "3 counts = 1 tick" */
+	{
+		while (start != NULL && count==3) /*decrement delay of all tasks in the delayed queue*/
+		{
+			start->delay -= 1; /*decrement the delay*/
+			if (start->delay == 0) /*if the task expires*/
+			{
+				QueTask(start->task);
+				DelayedQueue->queue_head = DelayedQueue->queue_head->next_node;
+			}
+		//	if (start->next_node != NULL) {
+				start = start->next_node; /*move to next task in the queue*/
+		//	}
+		}
+		count++;
+	}
+	count = 0;
+
+}
+
+
 
 void ReRunMe(int delay)
 {
@@ -148,11 +214,13 @@ void ReRunMe(int delay)
 
 void task1() {
 	printf("this is task 1 :) \n");
-	ReRunMe(0);
+	ReRunMe(3);
 }
 
 void task2() {
 	printf("this is task 2 hellooo \n");
+	ReRunMe(5);
+
 }
 
 void task3() {
@@ -170,6 +238,8 @@ void Init()
 
 	//initialize the queue
 	ReadyQueue->queue_head = 0;
+	DelayedQueue->queue_head = 0;
+
 }
 
 int main()
@@ -204,10 +274,13 @@ int main()
 
 	QueTask(C);
 
-	Dispatch(); 
-	Dispatch();
-	Dispatch();
-	Dispatch(); /*task 1 should run again*/
+
+	while (TRUE) {
+		Dispatch();
+		DecrementDelayed();
+	}
+
+	//Dispatch(); /*task 1 should run again*/
 
 	//printf(ReadyQueue->queue_head->task.Task_name);
 	//ReadyQueue->queue_head->task.func_ptr();
