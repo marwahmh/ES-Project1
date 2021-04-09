@@ -2,6 +2,8 @@
 #include <string.h>
 #include <stdlib.h>
 #include <CoScheduler.h>
+#include <stm32l4xx_it.h>
+
 
 #define TRUE 1
 
@@ -128,15 +130,21 @@ void QueDelayedTask(Task task, int delay)
 
 }
 
+int tickPassed =0;
+
 void DecrementDelayed()
 {
+	//tickPassed=0;
+
 	node* start = DelayedQueue->queue_head;
 
 	 /*if 50 msec passed*/
 	//setTimeout(50);
-	while(count<=3)  /*to simulate the tick period "3 counts = 1 tick" */
-	{
-		while (start != NULL && count==3) /*decrement delay of all tasks in the delayed queue*/
+	//while(count<=3)  /*to simulate the tick period "3 counts = 1 tick" */
+	//{
+	if(tickPassed>=50){
+		tickPassed=0;
+		while (start != NULL) /*decrement delay of all tasks in the delayed queue*/
 		{
 			start->delay -= 1; /*decrement the delay*/
 			if (start->delay == 0) /*if the task expires*/
@@ -150,6 +158,7 @@ void DecrementDelayed()
 		}
 		count++;
 	}
+	//}
 	count = 0;
 
 }
