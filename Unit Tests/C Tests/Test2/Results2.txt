@@ -1,0 +1,189 @@
+Task C 
+Task B 
+Task A 
+IDLE 
+IDLE 
+Task A 
+Task B 
+IDLE 
+Task A 
+IDLE 
+IDLE 
+Task B 
+Task A 
+IDLE 
+IDLE 
+Task A 
+Task B 
+IDLE 
+Task A 
+IDLE 
+IDLE 
+Task B 
+Task A 
+IDLE 
+IDLE 
+Task A 
+Task B 
+IDLE 
+Task A 
+IDLE 
+IDLE 
+Task B 
+Task A 
+IDLE 
+IDLE 
+Task A 
+Task B 
+IDLE 
+Task A 
+IDLE 
+IDLE 
+Task B 
+Task A 
+IDLE 
+IDLE 
+Task A 
+Task B 
+IDLE 
+Task A 
+IDLE 
+IDLE 
+Task B 
+Task A 
+IDLE 
+IDLE 
+Task A 
+Task B 
+IDLE 
+Task A 
+IDLE 
+IDLE 
+Task B 
+Task A 
+IDLE 
+IDLE 
+Task A 
+Task B 
+IDLE 
+Task A 
+IDLE 
+IDLE 
+Task B 
+Task A 
+IDLE 
+IDLE 
+Task A 
+Task B 
+IDLE 
+Task A 
+IDLE 
+IDLE 
+Task B 
+Task A 
+IDLE 
+IDLE 
+Task A 
+Task B 
+IDLE 
+Task A 
+IDLE 
+IDLE 
+Task B 
+Task A 
+IDLE 
+IDLE 
+Task A 
+Task B 
+IDLE 
+Task A 
+IDLE 
+IDLE 
+Task B 
+Task A 
+IDLE 
+IDLE 
+Task A 
+Task B 
+IDLE 
+Task A 
+IDLE 
+IDLE 
+Task B 
+Task A 
+IDLE 
+IDLE 
+Task A 
+Task B 
+IDLE 
+Task A 
+IDLE 
+IDLE 
+Task B 
+Task A 
+IDLE 
+IDLE 
+Task A 
+Task B 
+IDLE 
+Task A 
+IDLE 
+IDLE 
+Task B 
+Task A 
+IDLE 
+IDLE 
+Task A 
+Task B 
+IDLE 
+Task A 
+IDLE 
+IDLE 
+Task B 
+Task A 
+IDLE 
+IDLE 
+Task A 
+Task B 
+IDLE 
+Task A 
+IDLE 
+IDLE 
+Task B 
+Task A 
+IDLE 
+IDLE 
+Task A 
+Task B 
+IDLE 
+Task A 
+IDLE 
+IDLE 
+Task B 
+Task A 
+IDLE 
+IDLE 
+Task A 
+Task B 
+IDLE 
+Task A 
+IDLE 
+IDLE 
+Task B 
+Task A 
+IDLE 
+IDLE 
+Task A 
+Task B 
+IDLE 
+Task A 
+IDLE 
+IDLE 
+Task B 
+Task A 
+IDLE 
+IDLE 
+Task A 
+Task B 
+IDLE 
+Program ended with exit code: 9
