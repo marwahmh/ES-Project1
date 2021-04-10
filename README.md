@@ -85,3 +85,12 @@ We're trying here to give TaskA an invalid priority number, to test the program 
 ### Test1:
 
 ### Test2:
+
+# Running and Building the Code
+You should follow these steps to build and compile the project:
+
+1. After downloading the project file, run the µVision5 Project titled CoScheduler.
+2. If you would like to change the priorities of the tasks and their delay time, go to these parts in the code and change them accordingly:
+3. You may use the QueTask() function to add tasks to the queue along with their priorities after the Init() function call.
+4. Build the project and make sure there are no errors.
+5. 
