@@ -132,34 +132,40 @@ void QueDelayedTask(Task task, int delay)
 
 int tickPassed =0;
 
+int deduct_amount=0;
+
 void DecrementDelayed()
 {
 	//tickPassed=0;
 
-	node* start = DelayedQueue->queue_head;
+//	node* start = DelayedQueue->queue_head;
 
-	 /*if 50 msec passed*/
-	//setTimeout(50);
-	//while(count<=3)  /*to simulate the tick period "3 counts = 1 tick" */
-	//{
-	if(tickPassed>=50){
-		tickPassed=0;
-		while (start != NULL) /*decrement delay of all tasks in the delayed queue*/
-		{
-			start->delay -= 1; /*decrement the delay*/
-			if (start->delay == 0) /*if the task expires*/
-			{
-				QueTask(start->task);
-				DelayedQueue->queue_head = DelayedQueue->queue_head->next_node;
-			}
-		//	if (start->next_node != NULL) {
-				start = start->next_node; /*move to next task in the queue*/
-		//	}
-		}
-		count++;
-	}
-	//}
-	count = 0;
+//	 /*if 50 msec passed*/
+//	//setTimeout(50);
+//	//while(count<=3)  /*to simulate the tick period "3 counts = 1 tick" */
+//	//{
+//	if(tickPassed>=50){
+//		//tickPassed=0;
+//		deduct_amount=tickPassed/50;
+//		tickPassed %= 50;;
+//		int c=0;
+//		while (start != NULL) /*decrement delay of all tasks in the delayed queue*/
+//		{
+//			while(c<deduct_amount){
+//			start->delay -= 1; /*decrement the delay*/
+//			c++;
+//			}
+//			if (start->delay <= 0) /*if the task expires*/
+//			{
+//				QueTask(start->task);
+//				DelayedQueue->queue_head = DelayedQueue->queue_head->next_node;
+//			}
+//		//	if (start->next_node != NULL) {
+//				start = start->next_node; /*move to next task in the queue*/
+//		//	}
+//		}
+//	}
+//	//}
 
 }
 
