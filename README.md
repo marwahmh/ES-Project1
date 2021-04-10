@@ -1,6 +1,6 @@
 # Embedded Systems - Project1: Cooperative Scheduler
-This project is done for the Embedded Systems Course in the American University in Cairo Spring 2021. 
-Instructor: Dr. Mohamed Shalan 
+This project is done for the Embedded Systems Course in the American University in Cairo Spring 2021. <br/>
+Instructor: Dr. Mohamed Shalan <br/>
 Done By: Dareen Hussein (ID: 900170917), Marwa Sulaiman (ID: 900172284)
 
 ## The Cooperative Scheduler Logic:
@@ -53,15 +53,15 @@ We developed two applications each of which has its source code in its correspon
 # Unit Tests
 ## For the Compiled C file
 ### Test1: ReRunMe(0)
-We have 3 Tasks (A,B,C). Task A here is the task with the highest priority, and will use ReRunMe with 0 delay time.
+We have 3 Tasks (A,B,C). Task A here is the task with the highest priority, and will use ReRunMe with 0 delay time.<br/>
 <img width="689" alt="Results1" src="https://user-images.githubusercontent.com/49562717/114270967-7733c300-9a0f-11eb-8dab-253760e5e88c.png">
 
 ### Test2: Scheduling of 3 Tasks
-We have 3 Tasks (A,B,C). Task C has the highest priority then B then A. A reruns itself after 3 ticks, while B reruns itself after 5 ticks. The expected output is the execution of C->B->A then the readyQueue will be empty for 2 tickS then it will start executing A->B->A->B and so on. 
+We have 3 Tasks (A,B,C). Task C has the highest priority then B then A. A reruns itself after 3 ticks, while B reruns itself after 5 ticks. The expected output is the execution of C->B->A then the readyQueue will be empty for 2 tickS then it will start executing A->B->A->B and so on. <br/>
 <img width="689" alt="Results2" src="https://user-images.githubusercontent.com/49562717/114271055-d691d300-9a0f-11eb-90ff-66f23d28ea5a.png">
 
 ### Test3: Attempting to input an invalid priority number
-We're trying here to give TaskA an invalid priority number, to test the program since the schedueler supports 8 priority levels.
+We're trying here to give TaskA an invalid priority number, to test the program since the schedueler supports 8 priority levels.<br/>
 <img width="689" alt="Results3" src="https://user-images.githubusercontent.com/49562717/114271157-4acc7680-9a10-11eb-85b4-79c095ba639d.png">
 
 ### Test4: Testing with 4 Tasks (A, B, C, D) - Scalability Test
