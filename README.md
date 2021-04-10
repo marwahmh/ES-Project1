@@ -17,4 +17,16 @@ Struct Node, it contains:
 2. Task Delay
 3. Pointer to next node
 
+Struct Queue, it contains:
+1. Queue Type /*D for delay , R for ready*/
+2. Pointer to the head of the Queue /*the queue is an array of tasks, each has a function pointer and a priority*/
+
 # Main Functions
+* void QueTask(Task task);
+* void Dispatch()
+* void QueDelayedTask(Task task, int delay)
+* void DecrementDelayed();
+* void ReRunMe(int delay)
+* void Init()
+* void task1();
+* int main();
