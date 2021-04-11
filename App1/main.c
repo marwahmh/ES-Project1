@@ -22,7 +22,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <CoScheduler.h>
+#include "CoScheduler.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -56,6 +56,8 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_I2C1_Init(void);
 static void MX_USART1_UART_Init(void);
+void compareToThreshold();
+
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -143,8 +145,8 @@ void ReadTemp()
 	HAL_UART_Transmit(&huart1, output, 7, 5000); /*transmit it to UART*/
 	flag2=1;
 	
-	ReRunMe(0); /*rerun every 30 sec*/
-	
+	ReRunMe(100); /*rerun every 30 sec*/
+	compareToThreshold();
 }
 
 void compareToThreshold()
@@ -154,17 +156,20 @@ void compareToThreshold()
 	{
 		task3();
 	}
-	flag2=0;
-	flag1=0;
+	//flag2=0;
+	//flag1=0;
 	//intr_flag=0;
-	//ReRunMe(600); /*rerun every 30 sec*/
+	//ReRunMe(100); /*rerun every 30 sec*/
 
 	}
+	//	ReRunMe(10); /*rerun every 30 sec*/
+
 }
 
 int main(void)
 {
 	
+
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
@@ -229,7 +234,7 @@ int main(void)
 	//printf(ReadyQueue->queue_head->task.Task_name);
 	//ReadyQueue->queue_head->task.func_ptr();
 
-	QueTask(C);
+	//QueTask(C);
 	
 	temp_intPart[0]=0x11;
 	temp_fracPart[0]=0x12;
@@ -238,7 +243,8 @@ int main(void)
 		
 		//setThreshold();
 		//ReadTemp();
-		if(intr_flag==1){
+		if(intr_flag==1)
+		{
 		Dispatch();
 		}
 		//DecrementDelayed();
