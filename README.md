@@ -27,15 +27,13 @@ Struct Queue, it contains:
 
 ## Main Functions:
 * void Systick Handler()
-  * Gets called everytime the SysTick handler throws an interrupt. It also increments the counter variable. This variable is used to keep track of the cycles spent in a certain task function (that is essentially doing its job in time units more than a single systick and hence skipping cycles where the rest of the main program isn't doing its regular dispatching). 
+  * Gets called everytime the SysTick handler throws an interrupt. It also increments the counter variable. This variable is used to keep track of the cycles spent in a certain task function (that is essentially doing its job in time units more than a single systick and hence skipping cycles where the rest of the main program isn't doing its regular dispatching). The reason why we keep track of this is to later use it over the delay queue to decrement the tasks' delays since practically this is the amount of time they've been waiting for during the execution of a running task with a delay. Nevertheless, their delays also get decremented by 1 every tick = 50 ms.
 * void QueTask(Task task)
   * This function enqeues a task using its function pointer into the main readyQueue. The requirements specification document states that the scheduler should handle up to 8 priority levels.
 * void Dispatch()
   * This function gets called in our while(1) loop every time the SysTick throws an interrupt every 1 time unit. It checks if the ready queue is not empty. It then dequeues the highest priority task from the queue and executes it. It sets the timerFlag to zero so as to not dispatch again until the Systick timer raises the flag once more (i.e. the timer has counted 1 tick = 50ms). If the queue is empty it output "IDLE" to the user.
 * void QueDelayedTask(Task task, int delay)
-  * This function manages the process of adding delayed tasks to the delay queue and sort them ascendingly according to delay time.
-* void DecrementDelayed()
-  * This function checks that 50 ms have passed then decrement the delay of each task in the delayed queue by 1 then reset the counter again to 0. 
+  * This function manages the process of adding delayed tasks to the delay queue and sort them ascendingly according to delay time. 
 * void ReRunMe(int delay)
   * This function is used by tasks to rerun themselves periodically every specified delay time units. If the delay is 0, then this task is by definition ready and can be enqueued in the readyQueue. Otherwise, if the delay is greater than 0, then this task is by definition is to be enqueued in the delay queue using its delay values. If the delay option is set to 0 by the task within its function then this means that this task is always ready and will always remain in the main queue because it inserts itself everytime its executed in it through the rerun function.
 * void Init()
@@ -56,6 +54,8 @@ We developed two applications each of which has its source code in its correspon
 We have 3 Tasks (A,B,C). Task A here is the task with the highest priority, and will use ReRunMe with 0 delay time.<br/>
 <img width="689" alt="Results1" src="https://user-images.githubusercontent.com/49562717/114270967-7733c300-9a0f-11eb-8dab-253760e5e88c.png">
 
+
+
 ### Test2: Scheduling of 3 Tasks
 We have 3 Tasks (A,B,C). Task C has the highest priority then B then A. A reruns itself after 3 ticks, while B reruns itself after 5 ticks. The expected output is the execution of C->B->A then the readyQueue will be empty for 2 tickS then it will start executing A->B->A->B and so on. <br/>
 <img width="689" alt="Results2" src="https://user-images.githubusercontent.com/49562717/114271055-d691d300-9a0f-11eb-90ff-66f23d28ea5a.png">
@@ -72,9 +72,10 @@ We're trying here to give TaskA an invalid priority number, to test the program 
 <img width="689" alt="Results4" src="https://user-images.githubusercontent.com/49562717/114271174-5fa90a00-9a10-11eb-815f-60a17b33878a.png">
 
 ## For the Keil files
-### Test1:
+### Test: Scheduling of 3 Tasks with different delyas
+<img width="481" alt="Screen Shot 2021-04-11 at 1 05 31 PM" src="https://user-images.githubusercontent.com/49562717/114301810-9b9ea680-9ac6-11eb-931c-5cda4fdbd7dc.png">
 
-### Test2:
+Outout: https://drive.google.com/file/d/1spVxLQkFRArvk3AICtrd3Z3w1sfNeTWR/view?usp=sharing
 
 ## For the Tempreature Sensor
 ### Test1:
