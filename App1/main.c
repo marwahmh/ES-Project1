@@ -145,7 +145,7 @@ void ReadTemp()
 	HAL_UART_Transmit(&huart1, output, 7, 5000); /*transmit it to UART*/
 	flag2=1;
 	
-	ReRunMe(100); /*rerun every 30 sec*/
+	ReRunMe(600); /*rerun every 30 sec*/
 	compareToThreshold();
 }
 
