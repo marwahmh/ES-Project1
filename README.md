@@ -9,6 +9,14 @@ There is a struct named "Task" which contains the task pointer, priority and tas
 ## Softwares and Languages Used:
 * This project is developed using STM32CubeMX and Keil μVision to run on the Nucleo-32 board.
 * The language used to develop the scheduler is C.
+* Tera Term was used as an external source for data entry.
+
+## Hardware Used:
+* STM32 Nucleo-32 development board with STM32L432KC MCU.
+* DS3221Tempreature Sensor.
+* HC-sr04 Ultrasound Sensor.
+* USB to TTL bridge.
+* Buzzer.
 
 ## Main Data Structure:
 Srtuct Task, it contains:
@@ -78,12 +86,12 @@ We're trying here to give TaskA an invalid priority number, to test the program 
 Outout: https://drive.google.com/file/d/1spVxLQkFRArvk3AICtrd3Z3w1sfNeTWR/view?usp=sharing
 
 ## For the Tempreature Sensor
-### Test1:
+### Test1: Measured Temp. exceeded Threshold
 
-### Test2:
+### Test2: Measured Temp. below Threshold
 
 ## For the Parking Sensor
-### Test1:
+### Test:
 
 ### Test2:
 
@@ -95,3 +103,8 @@ You should follow these steps to build and compile the project:
 3. You may use the QueTask() function to add tasks to the queue along with their priorities after the Init() function call.
 4. Build the project and make sure there are no errors.
 5. 
+
+# Refrences
+1. STM32L432KC Datasheet: https://www.st.com/resource/en/datasheet/stm32l432kc.pdf
+2. DS3231 Tempreature Sensor Datasheet: https://datasheets.maximintegrated.com/en/ds/DS3231-DS3231S.pdf
+3. HC-sr04 Ultrasonic sensor Datasheet: https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf
