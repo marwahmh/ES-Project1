@@ -84,7 +84,7 @@ void compareToThreshold();
 void task3() {
 	//HAL_Delay(2000);
 	
-	for (int i = 1; i<=10;i++) // toggle
+	for (int i = 1; i<=20;i++) // toggle 10 times
 	 {
 		 HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_3);
 		 HAL_Delay(250);
