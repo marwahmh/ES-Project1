@@ -21,7 +21,8 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32l4xx_it.h"
-#include <CoScheduler.h>
+#include "CoScheduler.h"
+#include <stdlib.h>
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -189,7 +190,8 @@ extern int tickPassed;
 
 extern Queue* ReadyQueue;
 extern Queue* DelayedQueue;
-node* start; 
+node* start;
+node* temp4;
 void SysTick_Handler(void)
 {
   /* USER CODE BEGIN SysTick_IRQn 0 */
@@ -197,6 +199,7 @@ void SysTick_Handler(void)
   /* USER CODE END SysTick_IRQn 0 */
   HAL_IncTick(); /*increments uwTick every one ms*/
 	tickPassed+=1;
+	
 	
 	start = DelayedQueue->queue_head;
 
@@ -209,12 +212,20 @@ void SysTick_Handler(void)
 		if (start->delay <= 0) /*if the task expires*/
 		{
 			QueTask(start->task);
+		//	temp4=DelayedQueue->queue_head;
+		//	free(temp4);
+			
+			free(DelayedQueue->queue_head);
+
 			DelayedQueue->queue_head = DelayedQueue->queue_head->next_node;
 		}
 			start = start->next_node; /*move to next task in the queue*/
 	}
 }
 
+
+	
+	
 
 	
 	
