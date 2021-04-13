@@ -53,16 +53,27 @@ Struct Queue, it contains:
 We developed two applications each of which has its source code in its corresponding branch in branchs Application1 and Application2.
 
 ## For Application1: Tempreature Sensor
+### Objective
+Read the ambient temperature using a sensor every 30 sec. Produce an alarm (LED flashing) when the temperature exceeds a threshold. 
+### Main Functions
+
 
 ## For Application2: Parking Sensor
+### Objective
+Produce a sound that reflects how close is the car from the nearest object. A buzzer will be used
+to produce beeps and the duration between the beeps reflects how far is the object.
+
+### Main Functions
+* void readData()
+  * Gets called every tick to update the triggered pin and enable the HAL_TIM.
+* void measureDist()
+  * measures the distance aand produce the buzz sound delay accodringly. Note that it starts only when distance measured is less than 100 cm.   
 
 # Unit Tests
 ## For the Compiled C file
 ### Test1: ReRunMe(0)
 We have 3 Tasks (A,B,C). Task A here is the task with the highest priority, and will use ReRunMe with 0 delay time.<br/>
 <img width="689" alt="Results1" src="https://user-images.githubusercontent.com/49562717/114270967-7733c300-9a0f-11eb-8dab-253760e5e88c.png">
-
-
 
 ### Test2: Scheduling of 3 Tasks
 We have 3 Tasks (A,B,C). Task C has the highest priority then B then A. A reruns itself after 3 ticks, while B reruns itself after 5 ticks. The expected output is the execution of C->B->A then the readyQueue will be empty for 2 tickS then it will start executing A->B->A->B and so on. <br/>
@@ -83,17 +94,18 @@ We're trying here to give TaskA an invalid priority number, to test the program 
 ### Test: Scheduling of 3 Tasks with different delyas
 <img width="481" alt="Screen Shot 2021-04-11 at 1 05 31 PM" src="https://user-images.githubusercontent.com/49562717/114301810-9b9ea680-9ac6-11eb-931c-5cda4fdbd7dc.png">
 
-Outout: https://drive.google.com/file/d/1spVxLQkFRArvk3AICtrd3Z3w1sfNeTWR/view?usp=sharing
+Output: https://drive.google.com/file/d/1spVxLQkFRArvk3AICtrd3Z3w1sfNeTWR/view?usp=sharing
 
 ## For the Tempreature Sensor
 ### Test1: Measured Temp. exceeded Threshold
+Output:
 
 ### Test2: Measured Temp. below Threshold
+Output:
 
 ## For the Parking Sensor
-### Test:
-
-### Test2:
+### Test: Demo
+Output:
 
 # Running and Building the Code
 You should follow these steps to build and compile the project:
