@@ -133,7 +133,7 @@ void measureDist(void)
 {
  if (Distance < 100){
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0,GPIO_PIN_SET);
-	HAL_Delay(Distance*15);
+	HAL_Delay(Distance*10);
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0,GPIO_PIN_RESET);
 	HAL_Delay(Distance*10);
  }
