@@ -31,7 +31,7 @@ Struct Node, it contains:
 
 Struct Queue, it contains:
 1. Queue Type *(D for delay , R for ready)*
-2. Pointer to the head of the Queue *(the queue is an array of tasks, each has a function pointer and a priority)*
+2. Pointer to the head of the Queue *(the queue is an array of tasks, each has a function pointer and a priority)* The queue is implemented using linked lists.
 
 ## Main Functions:
 * void Systick Handler()
