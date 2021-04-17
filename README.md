@@ -101,10 +101,12 @@ As shown, UART1 is used and connected by the USB-To-TTL module to trnasmit and r
 ### Demos
 ### Test1: Measured Temp. exceeded Threshold
 Video link: https://drive.google.com/file/d/1FWX-p2BTqy-debhzp-NkHRv8ERniyLWN/view?usp=sharing
+
 Note that it blinks each time the temperature is measured and is greater than the threshold. Also note that it reads the temperature every 30 sec.
 
 ### Test2: Measured Temp. below Threshold
 Video link: https://drive.google.com/file/d/1lfV5HT0CyyDAeB_bXuu1N5zTFplMP_Ra/view?usp=sharing
+
 Note that it does not blink.
 
 ## Application2: Parking Sensor
