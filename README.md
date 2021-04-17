@@ -99,10 +99,10 @@ Read the ambient temperature using a sensor every 30 sec. Produce an alarm (LED 
 
 ### Demos
 ### Test1: Measured Temp. exceeded Threshold
-Output:
+Video link: https://drive.google.com/file/d/10uI5QCAm6-THRgi5hk982h0l04J-oB1g/view?usp=sharing
 
 ### Test2: Measured Temp. below Threshold
-Output:
+Video link:
 
 ## Application2: Parking Sensor
 ### Objective
