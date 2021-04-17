@@ -92,7 +92,7 @@ Read the ambient temperature using a sensor every 30 sec. Produce an alarm (LED 
 ### Circuit connections:
 
 <p float="left">
-<img src="https://user-images.githubusercontent.com/52168271/115125941-dd9a8180-9fcb-11eb-85d0-0830c0eb588c.png" width="600" height="450"/>
+<img src="https://user-images.githubusercontent.com/52168271/115127133-69b0a700-9fd4-11eb-9cc3-87745e85a2d2.png" width="600" height="450"/>
 <img src="https://user-images.githubusercontent.com/52168271/115127091-09216a00-9fd4-11eb-82d2-8af8a71671a3.png" width="430" height="300"/>
 </p>
 
