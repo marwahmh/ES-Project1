@@ -31,7 +31,7 @@ Struct Node, it contains:
 
 Struct Queue, it contains:
 1. Queue Type *(D for delay , R for ready)*
-2. Pointer to the head of the Queue *(the queue is an array of tasks, each has a function pointer and a priority)* The queue is implemented using linked lists.
+2. Pointer to the head of the Queue *(the queue is an array of tasks, each has a function pointer and a priority)*. Note: The queue is implemented using linked lists.
 
 ## Main Functions:
 * void Systick Handler()
@@ -48,26 +48,6 @@ Struct Queue, it contains:
   * This is the first function called in the main. Here, all the basic initialization (clock, UART, Systick, and interrupts) is done. Furthermore, the ready and delayed priority queues are instantiated besides there qeue heads are initialized.
 * int main()
   * This is where the while(1) loop exists and where all of the functions are called.
-
-# Applications
-We developed two applications each of which has its source code in its corresponding branch in branchs Application1 and Application2.
-
-## For Application1: Tempreature Sensor
-### Objective
-Read the ambient temperature using a sensor every 30 sec. Produce an alarm (LED flashing) when the temperature exceeds a threshold. 
-### Main Functions
-
-
-## For Application2: Parking Sensor
-### Objective
-Produce a sound that reflects how close is the car from the nearest object. A buzzer will be used
-to produce beeps and the duration between the beeps reflects how far is the object.
-
-### Main Functions
-* void readData()
-  * Gets called every tick to update the triggered pin and enable the HAL_TIM.
-* void measureDist()
-  * measures the distance aand produce the buzz sound delay accodringly. Note that it starts only when distance measured is less than 100 cm.   
 
 # Unit Tests
 ## For the Compiled C file
@@ -95,6 +75,30 @@ We're trying here to give TaskA an invalid priority number, to test the program 
 <img width="481" alt="Screen Shot 2021-04-11 at 1 05 31 PM" src="https://user-images.githubusercontent.com/49562717/114301810-9b9ea680-9ac6-11eb-931c-5cda4fdbd7dc.png">
 
 Output: https://drive.google.com/file/d/1spVxLQkFRArvk3AICtrd3Z3w1sfNeTWR/view?usp=sharing
+
+
+# Applications
+We developed two applications each of which has its source code in its corresponding branch in branchs Application1 and Application2.
+
+## Application1: Tempreature Sensor
+### Objective
+Read the ambient temperature using a sensor every 30 sec. Produce an alarm (LED flashing) when the temperature exceeds a threshold. 
+### Main Functions
+* setThreshold(): converts the user's input thershold from text to decimal.
+* ReadTemp(): Transmits the addresses to the temperature registers and receives the current measured temperature through the I2C1 bus. Then, it converts it to text and transmits it through UART to the user. Lastly, ReRunMe is called for the task to run every 30 sec.
+* compareToThreshold():Compares the measured temperature obtained from ReadTemp() to the decimal equivalent of the user inout threshold obtained by setThreshold(). If the measure temp is higher than the threshold, the function calls a task that toggles the LED 10 times.
+* Note: the user input (threshold) is received through UART in the USART1_IRQHandler()
+
+## Application2: Parking Sensor
+### Objective
+Produce a sound that reflects how close is the car from the nearest object. A buzzer will be used
+to produce beeps and the duration between the beeps reflects how far is the object.
+
+### Main Functions
+* void readData()
+  * Gets called every tick to update the triggered pin and enable the HAL_TIM.
+* void measureDist()
+  * measures the distance aand produce the buzz sound delay accodringly. Note that it starts only when distance measured is less than 100 cm.   
 
 ## For the Tempreature Sensor
 ### Test1: Measured Temp. exceeded Threshold
