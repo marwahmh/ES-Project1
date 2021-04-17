@@ -96,6 +96,7 @@ Read the ambient temperature using a sensor every 30 sec. Produce an alarm (LED 
 <img src="https://user-images.githubusercontent.com/52168271/115126344-b2656180-9fce-11eb-9fef-f1b03da15ec3.png" width="400" height="450"/>
 </p>
 
+As shown, UART1 is used and connected by the USB-To-TTL module to trnasmit and receive to/from the PC through pins PA9 and PA10, and I2C1 is used to connect the MCU with the Temperature sensor through pins PB6 and PB7. Also, the LED is enabled through pin PB3.
 
 ### Demos
 ### Test1: Measured Temp. exceeded Threshold
