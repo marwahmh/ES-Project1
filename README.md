@@ -93,7 +93,7 @@ Read the ambient temperature using a sensor every 30 sec. Produce an alarm (LED 
 
 <p float="left">
 <img src="https://user-images.githubusercontent.com/52168271/115125941-dd9a8180-9fcb-11eb-85d0-0830c0eb588c.png" width="600" height="450"/>
-<img src="https://user-images.githubusercontent.com/52168271/115127091-09216a00-9fd4-11eb-82d2-8af8a71671a3.png" width="500" height="300"/>
+<img src="https://user-images.githubusercontent.com/52168271/115127091-09216a00-9fd4-11eb-82d2-8af8a71671a3.png" width="430" height="300"/>
 </p>
 
 As shown, UART1 is used and connected by the USB-To-TTL module to trnasmit and receive to/from the PC through pins PA9 and PA10, and I2C1 is used to connect the MCU with the Temperature sensor through pins PB6 and PB7. Also, the LED is configured internally through pin PB3. The MCU, the Temp. sensor and the USB-To-TTL module all share a common ground, and the sensor is powered by a 5V voltage supply.
