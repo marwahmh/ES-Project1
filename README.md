@@ -90,7 +90,7 @@ Read the ambient temperature using a sensor every 30 sec. Produce an alarm (LED 
 * Note: the user input (threshold) is received through UART in the USART1_IRQHandler()
 
 ### Circuit connections:
-![image](https://user-images.githubusercontent.com/52168271/115125941-dd9a8180-9fcb-11eb-85d0-0830c0eb588c.png)
+![image](https://user-images.githubusercontent.com/52168271/115125941-dd9a8180-9fcb-11eb-85d0-0830c0eb588c.png =250x250)
 
 
 ### Demos
