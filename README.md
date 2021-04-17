@@ -89,6 +89,17 @@ Read the ambient temperature using a sensor every 30 sec. Produce an alarm (LED 
 * compareToThreshold():Compares the measured temperature obtained from ReadTemp() to the decimal equivalent of the user inout threshold obtained by setThreshold(). If the measure temp is higher than the threshold, the function calls a task that toggles the LED 10 times.
 * Note: the user input (threshold) is received through UART in the USART1_IRQHandler()
 
+### Circuit connections:
+![image](https://user-images.githubusercontent.com/52168271/115125941-dd9a8180-9fcb-11eb-85d0-0830c0eb588c.png)
+
+
+### Demos
+### Test1: Measured Temp. exceeded Threshold
+Output:
+
+### Test2: Measured Temp. below Threshold
+Output:
+
 ## Application2: Parking Sensor
 ### Objective
 Produce a sound that reflects how close is the car from the nearest object. A buzzer will be used
@@ -100,12 +111,6 @@ to produce beeps and the duration between the beeps reflects how far is the obje
 * void measureDist()
   * measures the distance aand produce the buzz sound delay accodringly. Note that it starts only when distance measured is less than 100 cm.   
 
-## For the Tempreature Sensor
-### Test1: Measured Temp. exceeded Threshold
-Output:
-
-### Test2: Measured Temp. below Threshold
-Output:
 
 ## For the Parking Sensor
 ### Test: Demo
