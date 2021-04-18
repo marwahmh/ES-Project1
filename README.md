@@ -138,7 +138,9 @@ video link: https://drive.google.com/file/d/1420I_WIc1j1dxZz1iE0I2gjHltBmyWYi/vi
 You should follow these steps to build and compile the project:
 
 1. After downloading the project file, run the µVision5 Project titled CoScheduler.
-2. If you would like to change the priorities of the tasks and their delay time, go to these parts in the code and change them accordingly: SCREENSHOOT!!!
+2. If you would like to change the priorities of the tasks and their delay time, go to these parts in the code and change them accordingly:
+ ![image](https://user-images.githubusercontent.com/52168271/115133490-e8bfd280-a008-11eb-98fd-6273dd70498a.png)
+
 3. You may use the QueTask() function to add tasks to the queue along with their priorities after the Init() function call.
 4. Build the project, load it on the Nucleo-32 Board and make sure there are no errors.
 
