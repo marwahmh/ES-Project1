@@ -74,31 +74,21 @@ void compareToThreshold();
 	
 	
 	
-//int count = 0;
 
-//Queue* ReadyQueue;
-//Queue* DelayedQueue;
+void ToggleLED() {
 
-
-
-void task3() {
-	//HAL_Delay(2000);
-	
 	for (int i = 1; i<=20;i++) // toggle 10 times
 	 {
 		 HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_3);
 		 HAL_Delay(250);
 	 }
-	//ReRunMe(1);
-	//printf("this is task 3 hiii \n");
+
 }
 
 
 extern uint8_t threshold[5]; /*5 characters 'e.g 25.25', and one char for \r*/
 int Thresh_integer_part=0;
 int Thresh_fraction_part=0;
-//extern int Thresh_integer_part;
-//extern int Thresh_fraction_part;
 
 int flag1=0;
 extern int intr_flag;
@@ -154,15 +144,10 @@ void compareToThreshold()
 	if(flag2==1 && flag1==1){
 	if((outputInt>Thresh_integer_part) || (outputInt == Thresh_integer_part && outputFrac>Thresh_fraction_part) )
 	{
-		task3();
+		ToggleLED();
 	}
-	//flag2=0;
-	//flag1=0;
-	//intr_flag=0;
-	//ReRunMe(100); /*rerun every 30 sec*/
 
 	}
-	//	ReRunMe(10); /*rerun every 30 sec*/
 
 }
 
@@ -201,8 +186,6 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
-
-
 	Task A;
 	A.priority = 5;
 	A.func_ptr = setThreshold;
@@ -213,42 +196,23 @@ int main(void)
 	B.func_ptr = ReadTemp;
 	B.Task_name = "Task B";
 
-	Task C;
-	C.priority = 3;
-	C.func_ptr = compareToThreshold;
-	C.Task_name = "Task C";
 
 	__HAL_UART_ENABLE_IT(&huart1, UART_IT_RXNE); /*enable interrupts*/
 
-
 	Init();
 	
-
 	QueTask(A);
-
-	//printf(ReadyQueue->queue_head->task.Task_name);
-	//ReadyQueue->queue_head->task.func_ptr();
-
 	QueTask(B);
 
-	//printf(ReadyQueue->queue_head->task.Task_name);
-	//ReadyQueue->queue_head->task.func_ptr();
-
-	//QueTask(C);
-	
+  /*addresses of temperature registers*/
 	temp_intPart[0]=0x11;
 	temp_fracPart[0]=0x12;
 
 	while (1) {
-		
-		//setThreshold();
-		//ReadTemp();
-		if(intr_flag==1)
+		if(intr_flag==1) /*wait for the user to start and input the threshold*/
 		{
 		Dispatch();
 		}
-		//DecrementDelayed();
-
 	}
 	
   /* USER CODE END 3 */
