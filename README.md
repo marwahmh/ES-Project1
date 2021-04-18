@@ -64,7 +64,7 @@ We're trying here to give TaskA an invalid priority number, to test the program 
 <img alt="Results3" src="https://user-images.githubusercontent.com/49562717/114271157-4acc7680-9a10-11eb-85b4-79c095ba639d.png" width="500" height="350"/>
 
 ### Test4: Testing with 4 Tasks (A, B, C, D) - Scalability Test
-<img alt="Table" src="https://user-images.githubusercontent.com/49562717/114271681-e4952300-9a12-11eb-9dca-8e2075d9e36f.png" width="500" height="350"/>
+<img width="443" alt="Table" src="https://user-images.githubusercontent.com/49562717/115131724-937cc480-9ffa-11eb-911f-13203cb643a6.png">
 
 <img alt="Scalibility" src="https://user-images.githubusercontent.com/49562717/114271685-e959d700-9a12-11eb-9878-f37ea45ac2df.png" width="500" height="350"/>
 
@@ -72,7 +72,7 @@ We're trying here to give TaskA an invalid priority number, to test the program 
 
 ## For the Keil files
 ### Test: Scheduling of 3 Tasks with different delyas
-<img alt="Screen Shot 2021-04-11 at 1 05 31 PM" src="https://user-images.githubusercontent.com/49562717/114301810-9b9ea680-9ac6-11eb-931c-5cda4fdbd7dc.png" width="500" height="350"/>
+<img width="478" alt="Table" src="https://user-images.githubusercontent.com/49562717/115131758-c1620900-9ffa-11eb-9c6a-b056878a4e4a.png">
 
 Output: https://drive.google.com/file/d/1spVxLQkFRArvk3AICtrd3Z3w1sfNeTWR/view?usp=sharing
 
