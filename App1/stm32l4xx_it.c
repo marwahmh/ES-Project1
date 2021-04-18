@@ -197,42 +197,27 @@ void SysTick_Handler(void)
   /* USER CODE BEGIN SysTick_IRQn 0 */
 
   /* USER CODE END SysTick_IRQn 0 */
-  HAL_IncTick(); /*increments uwTick every one ms*/
+  	HAL_IncTick(); /*increments uwTick every one ms*/
 	tickPassed+=1;
-	
-	
 	start = DelayedQueue->queue_head;
 
-	if(tickPassed==50){
+	if(tickPassed==50)
+	{
 	tickPassed=0;
 	int c=0;
 	while (start != NULL) /*decrement delay of all tasks in the delayed queue*/
-	{
-		start->delay -= 1; /*decrement the delay*/	
-		if (start->delay <= 0) /*if the task expires*/
 		{
-			QueTask(start->task);
-		//	temp4=DelayedQueue->queue_head;
-		//	free(temp4);
-			
-			free(DelayedQueue->queue_head);
-
-			DelayedQueue->queue_head = DelayedQueue->queue_head->next_node;
-		}
+			start->delay -= 1; /*decrement the delay*/	
+			if (start->delay <= 0) /*if the task expires*/
+			{
+				QueTask(start->task);
+				free(DelayedQueue->queue_head);
+				DelayedQueue->queue_head = DelayedQueue->queue_head->next_node;
+			}
 			start = start->next_node; /*move to next task in the queue*/
+		}
 	}
-}
 
-
-	
-	
-
-	
-	
-	
-	
-//	if(HAL_GetTick()%50 == 0){tickPassed=1;}
-//	else {tickPassed=0;}
   /* USER CODE BEGIN SysTick_IRQn 1 */
 
   /* USER CODE END SysTick_IRQn 1 */
@@ -251,8 +236,6 @@ void SysTick_Handler(void)
 uint8_t threshold[6]; /*5 characters 'e.g 25.25', and one char for \r*/
 int i=0;
 int intr_flag=0;
-//int Thresh_integer_part=500;
-//int Thresh_fraction_part=500;
 uint8_t cr ='\r';
 uint8_t nl = '\n';
 uint8_t msg1[20] ="Threshold Temp = ";
@@ -273,11 +256,6 @@ void USART1_IRQHandler(void)
 
 	intr_flag=1;}
 	}
-	
-//	if(threshold[5]!=0){
-//	Thresh_integer_part = (threshold[0]-'0')*10 + (threshold[1]-'0');
-//	Thresh_fraction_part = ((threshold[3]-'0')*10 + (threshold[4]-'0'))/25; /*resolution of 0.25*/
-//	}
 	
 	
   /* USER CODE BEGIN USART1_IRQn 0 */
