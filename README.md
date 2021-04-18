@@ -124,7 +124,7 @@ to produce beeps and the duration between the beeps reflects how far is the obje
 ### Circuit Connections
 
 <p float="left">
-<img src="https://user-images.githubusercontent.com/52168271/115127251-6669eb00-9fd5-11eb-97ca-7b0f68b695c5.png" width="400" height="300"/>
+<img src="https://user-images.githubusercontent.com/52168271/115127251-6669eb00-9fd5-11eb-97ca-7b0f68b695c5.png" width="350" height="300"/>
 <img src="https://user-images.githubusercontent.com/52168271/115130969-61686400-9ff4-11eb-913b-b24078b6b50e.png" width="250" height="300"/>
 </p>
 
