@@ -194,31 +194,26 @@ void SysTick_Handler(void)
 {
   /* USER CODE BEGIN SysTick_IRQn 0 */
 
-  HAL_IncTick(); /*increments uwTick every one ms*/
 	tickPassed+=1;
-	
-	
 	start = DelayedQueue->queue_head;
-
-	if(tickPassed==50){
-	tickPassed=0;
-	int c=0;
-	while (start != NULL) /*decrement delay of all tasks in the delayed queue*/
+	if(tickPassed==50)
 	{
-		start->delay -= 1; /*decrement the delay*/	
-		if (start->delay <= 0) /*if the task expires*/
+		tickPassed=0;
+		int c=0;
+		while (start != NULL) /*decrement delay of all tasks in the delayed queue*/
 		{
-			QueTask(start->task);
-		//	temp4=DelayedQueue->queue_head;
-		//	free(temp4);
+			start->delay -= 1; /*decrement the delay*/
 			
-			free(DelayedQueue->queue_head);
-
-			DelayedQueue->queue_head = DelayedQueue->queue_head->next_node;
-		}
+			if (start->delay <= 0) /*if the task expires*/
+			{
+				QueTask(start->task);
+				free(DelayedQueue->queue_head);
+				DelayedQueue->queue_head = DelayedQueue->queue_head->next_node;
+			}
+			
 			start = start->next_node; /*move to next task in the queue*/
+		}
 	}
-}
 
   /* USER CODE END SysTick_IRQn 0 */
   HAL_IncTick();
