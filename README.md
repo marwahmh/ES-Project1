@@ -141,11 +141,11 @@ You should follow these steps to build and compile the project:
 3. You may use the QueTask() function to add tasks to the queue along with their priorities after the Init() function call.
 4. Build the project, load it on the Nucleo-32 Board and make sure there are no errors.
 
-## For Application 1
+### For Application 1
 5. Enter the threshold value (the user has a buffer of 5 characters, they can use 2 digits for the integer and another 2 fractional partions separated by a '.').
 6. Notice the output ambient temperature, and if it exceeds the threshold the LED will flash.
 
-## For Application 2
+### For Application 2
 5. Place an object in front of the ultrasonic sensor and vary the distance.
 6. Notice the change in duration of the beeps reflecting the distance.
 
