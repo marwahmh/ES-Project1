@@ -117,8 +117,8 @@ to produce beeps and the duration between the beeps reflects how far is the obje
 ### Main Functions
 * void readData()
   * Gets called every tick to update the triggered pin and enable the HAL_TIM.
-* void measureDist()
-  * measures the distance aand produce the buzz sound delay accodringly. Note that it starts only when distance measured is less than 200 cm. 
+* void sendToBuzz()
+  * produces the buzz sound delay accodring to the Distance. Note that it starts only when distance measured is less than 200 cm. 
 * Since TIM1 channel 1 is used to capture the data (the echo), HAL_TIM_IC_CaptureCallback is modified to perform the function of obtaining the difference between the start and the end of the echo signal and use it to calculate the distance in cm.
 
 ### Circuit Connections
