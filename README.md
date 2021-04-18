@@ -89,7 +89,7 @@ Read the ambient temperature using a sensor every 30 sec. Produce an alarm (LED 
 * compareToThreshold():Compares the measured temperature obtained from ReadTemp() to the decimal equivalent of the user inout threshold obtained by setThreshold(). If the measure temp is higher than the threshold, the function calls a task that toggles the LED 10 times.
 * Note: the user input (threshold) is received through UART in the USART1_IRQHandler()
 
-### Circuit connections:
+### Circuit connections
 
 <p float="left">
 <img src="https://user-images.githubusercontent.com/52168271/115127133-69b0a700-9fd4-11eb-9cc3-87745e85a2d2.png" width="500" height="350"/>
@@ -98,7 +98,7 @@ Read the ambient temperature using a sensor every 30 sec. Produce an alarm (LED 
 
 As shown, UART1 is used and connected by the USB-To-TTL module to trnasmit and receive to/from the PC through pins PA9 and PA10, and I2C1 is used to connect the MCU with the Temperature sensor through pins PB6 and PB7. Also, the LED is configured internally through pin PB3. The MCU, the Temp. sensor and the USB-To-TTL module all share a common ground, and the sensor is powered by a 5V voltage supply.
 
-### Demos
+## Demos
 ### Test1: Measured Temp. exceeded Threshold
 Video link: https://drive.google.com/file/d/1FWX-p2BTqy-debhzp-NkHRv8ERniyLWN/view?usp=sharing
 
