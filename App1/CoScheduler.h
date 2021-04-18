@@ -10,7 +10,7 @@ extern "C" {
 	typedef struct n node;
 	typedef struct q Queue;
 	
-	typedef struct t
+typedef struct t
 {
 	char* Task_name;
 	int priority;
