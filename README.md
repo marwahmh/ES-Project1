@@ -34,8 +34,7 @@ Struct Queue, it contains:
 2. Pointer to the head of the Queue *(the queue is an array of tasks, each has a function pointer and a priority)*. Note: The queue is implemented using linked lists.
 
 ## Main Functions:
-* void Systick Handler()
-  * Gets called everytime the SysTick handler throws an interrupt. It also increments the counter variable. This variable is used to keep track of the cycles spent in a certain task function (that is essentially doing its job in time units more than a single systick and hence skipping cycles where the rest of the main program isn't doing its regular dispatching). The reason why we keep track of this is to later use it over the delay queue to decrement the tasks' delays since practically this is the amount of time they've been waiting for during the execution of a running task with a delay. Nevertheless, their delays also get decremented by 1 every tick = 50 ms.
+
 * void QueTask(Task task)
   * This function enqeues a task using its function pointer into the main readyQueue. The requirements specification document states that the scheduler should handle up to 8 priority levels.
 * void Dispatch()
@@ -48,6 +47,8 @@ Struct Queue, it contains:
   * This is the first function called in the main. Here, all the basic initialization (clock, UART, Systick, and interrupts) is done. Furthermore, the ready and delayed priority queues are instantiated besides there qeue heads are initialized.
 * int main()
   * This is where the while(1) loop exists and where all of the functions are called.
+* void Systick Handler()
+  * Gets called everytime the SysTick handler throws an interrupt. It also increments the counter variable. This variable is used to keep track of the cycles spent in a certain task function (that is essentially doing its job in time units more than a single systick and hence skipping cycles where the rest of the main program isn't doing its regular dispatching). The reason why we keep track of this is to later use it over the delay queue to decrement the tasks' delays since practically this is the amount of time they've been waiting for during the execution of a running task with a delay. Nevertheless, their delays also get decremented by 1 every tick = 50 ms.
 
 # Unit Tests
 ## For the Compiled C file
