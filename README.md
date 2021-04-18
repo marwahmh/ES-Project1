@@ -53,26 +53,26 @@ Struct Queue, it contains:
 ## For the Compiled C file
 ### Test1: ReRunMe(0)
 We have 3 Tasks (A,B,C). Task A here is the task with the highest priority, and will use ReRunMe with 0 delay time.<br/>
-<img width="689" alt="Results1" src="https://user-images.githubusercontent.com/49562717/114270967-7733c300-9a0f-11eb-8dab-253760e5e88c.png">
+<img alt="Results1" src="https://user-images.githubusercontent.com/49562717/114270967-7733c300-9a0f-11eb-8dab-253760e5e88c.png" width="500" height="350"/>
 
 ### Test2: Scheduling of 3 Tasks
 We have 3 Tasks (A,B,C). Task C has the highest priority then B then A. A reruns itself after 3 ticks, while B reruns itself after 5 ticks. The expected output is the execution of C->B->A then the readyQueue will be empty for 2 tickS then it will start executing A->B->A->B and so on. <br/>
-<img width="689" alt="Results2" src="https://user-images.githubusercontent.com/49562717/114271055-d691d300-9a0f-11eb-90ff-66f23d28ea5a.png">
+<img alt="Results2" src="https://user-images.githubusercontent.com/49562717/114271055-d691d300-9a0f-11eb-90ff-66f23d28ea5a.png" width="500" height="350"/>
 
 ### Test3: Attempting to input an invalid priority number
 We're trying here to give TaskA an invalid priority number, to test the program since the schedueler supports 8 priority levels.<br/>
-<img width="689" alt="Results3" src="https://user-images.githubusercontent.com/49562717/114271157-4acc7680-9a10-11eb-85b4-79c095ba639d.png">
+<img alt="Results3" src="https://user-images.githubusercontent.com/49562717/114271157-4acc7680-9a10-11eb-85b4-79c095ba639d.png" width="500" height="350"/>
 
 ### Test4: Testing with 4 Tasks (A, B, C, D) - Scalability Test
-<img width="443" alt="Table" src="https://user-images.githubusercontent.com/49562717/114271681-e4952300-9a12-11eb-9dca-8e2075d9e36f.png">
+<img alt="Table" src="https://user-images.githubusercontent.com/49562717/114271681-e4952300-9a12-11eb-9dca-8e2075d9e36f.png" width="500" height="350"/>
 
-<img width="597" alt="Scalibility" src="https://user-images.githubusercontent.com/49562717/114271685-e959d700-9a12-11eb-9878-f37ea45ac2df.png">
+<img alt="Scalibility" src="https://user-images.githubusercontent.com/49562717/114271685-e959d700-9a12-11eb-9878-f37ea45ac2df.png" width="500" height="350"/>
 
-<img width="689" alt="Results4" src="https://user-images.githubusercontent.com/49562717/114271174-5fa90a00-9a10-11eb-815f-60a17b33878a.png">
+<img alt="Results4" src="https://user-images.githubusercontent.com/49562717/114271174-5fa90a00-9a10-11eb-815f-60a17b33878a.png" width="500" height="350"/>
 
 ## For the Keil files
 ### Test: Scheduling of 3 Tasks with different delyas
-<img width="481" alt="Screen Shot 2021-04-11 at 1 05 31 PM" src="https://user-images.githubusercontent.com/49562717/114301810-9b9ea680-9ac6-11eb-931c-5cda4fdbd7dc.png">
+<img alt="Screen Shot 2021-04-11 at 1 05 31 PM" src="https://user-images.githubusercontent.com/49562717/114301810-9b9ea680-9ac6-11eb-931c-5cda4fdbd7dc.png" width="500" height="350"/>
 
 Output: https://drive.google.com/file/d/1spVxLQkFRArvk3AICtrd3Z3w1sfNeTWR/view?usp=sharing
 
@@ -137,10 +137,17 @@ video link: https://drive.google.com/file/d/1420I_WIc1j1dxZz1iE0I2gjHltBmyWYi/vi
 You should follow these steps to build and compile the project:
 
 1. After downloading the project file, run the µVision5 Project titled CoScheduler.
-2. If you would like to change the priorities of the tasks and their delay time, go to these parts in the code and change them accordingly:
+2. If you would like to change the priorities of the tasks and their delay time, go to these parts in the code and change them accordingly: SCREENSHOOT!!!
 3. You may use the QueTask() function to add tasks to the queue along with their priorities after the Init() function call.
-4. Build the project and make sure there are no errors.
-5. 
+4. Build the project, load it on the Nucleo-32 Board and make sure there are no errors.
+
+##For Application 1
+5. Enter the threshold value (the user has a buffer of 5 characters, they can use 2 digits for the integer and another 2 fractional partions separated by a '.').
+6. Notice the output ambient temperature, and if it exceeds the threshold the LED will flash.
+
+##For Application 2
+5. Place an object in front of the ultrasonic sensor and vary the distance.
+6. Notice the change in duration of the beeps reflecting the distance.
 
 # Refrences
 1. STM32L432KC Datasheet: https://www.st.com/resource/en/datasheet/stm32l432kc.pdf
