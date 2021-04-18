@@ -124,8 +124,8 @@ to produce beeps and the duration between the beeps reflects how far is the obje
 ### Circuit Connections
 
 <p float="left">
-<img src="https://user-images.githubusercontent.com/52168271/115127251-6669eb00-9fd5-11eb-97ca-7b0f68b695c5.png" width="300" height="200"/>
-<img src="https://user-images.githubusercontent.com/52168271/115130969-61686400-9ff4-11eb-913b-b24078b6b50e.png" width="150" height="200"/>
+<img src="https://user-images.githubusercontent.com/52168271/115127251-6669eb00-9fd5-11eb-97ca-7b0f68b695c5.png" width="400" height="100"/>
+<img src="https://user-images.githubusercontent.com/52168271/115130969-61686400-9ff4-11eb-913b-b24078b6b50e.png" width="250" height="300"/>
 </p>
 
 The trigger of the altrasound sensor is connected to GPIO pin PA9, and the echo is connected to PA8, which is configured as TIM1 channel 1. The buzzer is connected to GPIO pin PB0. The snesor, the buzzer and the MCU share a common ground, and the sensor powered by 5V supply. 
