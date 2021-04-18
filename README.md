@@ -51,7 +51,7 @@ Struct Queue, it contains:
   * Gets called everytime the SysTick handler throws an interrupt. It also increments the counter variable. This variable is used to keep track of the cycles spent in a certain task function (that is essentially doing its job in time units more than a single systick and hence skipping cycles where the rest of the main program isn't doing its regular dispatching). The reason why we keep track of this is to later use it over the delay queue to decrement the tasks' delays since practically this is the amount of time they've been waiting for during the execution of a running task with a delay. Nevertheless, their delays also get decremented by 1 every tick = 50 ms.
 
 # Unit Tests
-## For the Compiled C file
+## 1- Testing in Visual Studio the Compiled C file
 ### Test1: ReRunMe(0)
 We have 3 Tasks (A,B,C). Task A here is the task with the highest priority, and will use ReRunMe with 0 delay time.<br/>
 <img alt="Results1" src="https://user-images.githubusercontent.com/49562717/114270967-7733c300-9a0f-11eb-8dab-253760e5e88c.png" width="500" height="350"/>
@@ -71,7 +71,7 @@ We're trying here to give TaskA an invalid priority number, to test the program 
 
 <img alt="Results4" src="https://user-images.githubusercontent.com/49562717/114271174-5fa90a00-9a10-11eb-815f-60a17b33878a.png" width="500" height="350"/>
 
-## For the Keil files
+## 2- Integrating and testing with Keil uVision 
 ### Test: Scheduling of 3 Tasks with different delyas
 <img width="478" alt="Table" src="https://user-images.githubusercontent.com/49562717/115131758-c1620900-9ffa-11eb-9c6a-b056878a4e4a.png">
 
