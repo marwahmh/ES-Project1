@@ -56,7 +56,7 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_TIM1_Init(void);
 static void MX_USART2_UART_Init(void);
-void measureDist(void);
+void sendToBuzz(void);
 
 /* USER CODE BEGIN PFP */
 
@@ -66,54 +66,53 @@ void measureDist(void);
 /* USER CODE BEGIN 0 */
 void delay (uint16_t time)
 {
-__HAL_TIM_SET_COUNTER(&htim1, 0);
-while (__HAL_TIM_GET_COUNTER (&htim1) < time);
+	__HAL_TIM_SET_COUNTER(&htim1, 0);
+	while (__HAL_TIM_GET_COUNTER (&htim1) < time);
 }
 
 uint32_t Val1 = 0;
 uint32_t Val2 = 0;
 uint32_t Difference = 0;
-uint8_t firstVal = 0;  // is the first value captured
+uint8_t first_flag = 0;  /*flag to indicate if the first value is captured*/
 uint8_t Distance  = 0;
 
 #define TRIG_PIN GPIO_PIN_9
 #define TRIG_PORT GPIOA
 
-// Let's write the callback function
+/*the callback function*/
 
 void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
 {
-	if (htim->Channel == HAL_TIM_ACTIVE_CHANNEL_1)  // if the interrupt source is channel1
+	if (htim->Channel == HAL_TIM_ACTIVE_CHANNEL_1)  /* if interrupt source is channel 1 "the one we configured" */
 	{
-		if (firstVal==0) // if the first value is not captured
+		if (first_flag==0) /* if the first value is not captured, read it */
 		{
-			Val1 = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_1); // read the first value
-			firstVal = 1;  // set the first captured as true
-			// Now change the polarity to falling edge
-			__HAL_TIM_SET_CAPTUREPOLARITY(htim, TIM_CHANNEL_1, TIM_INPUTCHANNELPOLARITY_FALLING);
+			Val1 = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_1); /* read the first value */
+			first_flag = 1;  /* set the first captured flag true */
+			__HAL_TIM_SET_CAPTUREPOLARITY(htim, TIM_CHANNEL_1, TIM_INPUTCHANNELPOLARITY_FALLING);		/*change the polarity to falling edge*/
 		}
 
-		else if (firstVal==1)   // if the first is already captured
+		else if (first_flag==1)   // if the first is already read/captured
 		{
 			Val2 = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_1);  // read second value
 			__HAL_TIM_SET_COUNTER(htim, 0);  // reset the counter
 
-		if (Val2 > Val1)
-		{
-			Difference = Val2-Val1;
-		}
+			if (Val2 > Val1)
+			{
+				Difference = Val2-Val1;
+			}
 
-		else if (Val1 > Val2)
-		{
-			Difference = (0xffff - Val1) + Val2;
-		}
+			else if (Val1 > Val2)
+			{
+				Difference = (0xffff - Val1) + Val2; /*the time difference */
+			}
 
-		Distance = Difference*0.034/2;
-		firstVal = 0; // set it back to false
+			Distance = Difference*0.034/2;
+			first_flag = 0; // set it back to false
 
-		// set polarity to rising edge
-		__HAL_TIM_SET_CAPTUREPOLARITY(htim, TIM_CHANNEL_1, TIM_INPUTCHANNELPOLARITY_RISING);
-		__HAL_TIM_DISABLE_IT(&htim1, TIM_IT_CC1);
+			/* set polarity to be rising edge */
+			__HAL_TIM_SET_CAPTUREPOLARITY(htim, TIM_CHANNEL_1, TIM_INPUTCHANNELPOLARITY_RISING);
+			__HAL_TIM_DISABLE_IT(&htim1, TIM_IT_CC1);
 		}
 	}
 }
@@ -122,22 +121,26 @@ void readData (void)
 {
 	HAL_GPIO_WritePin(TRIG_PORT, TRIG_PIN, GPIO_PIN_RESET);  // pull the TRIG pin low
 	delay(2);
-	HAL_GPIO_WritePin(TRIG_PORT, TRIG_PIN, GPIO_PIN_SET);  // pull the TRIG pin HIGH
+	HAL_GPIO_WritePin(TRIG_PORT, TRIG_PIN, GPIO_PIN_SET);  // set the TRIG pin high
 	delay(10);  // wait for 10 us
 	HAL_GPIO_WritePin(TRIG_PORT, TRIG_PIN, GPIO_PIN_RESET);  // pull the TRIG pin low
+
 	__HAL_TIM_ENABLE_IT(&htim1, TIM_IT_CC1);
-	ReRunMe(1);
+	
+	ReRunMe(2);
 }
 
-void measureDist(void)
+void sendToBuzz(void)
 {
- if (Distance < 100){
-	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0,GPIO_PIN_SET);
-	HAL_Delay(Distance*10);
-	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0,GPIO_PIN_RESET);
-	HAL_Delay(Distance*10);
- }
-	ReRunMe(3);
+
+if(Distance<200){
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0,GPIO_PIN_SET);
+		HAL_Delay(Distance*9);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0,GPIO_PIN_RESET);
+		HAL_Delay(Distance*9);
+}
+
+  ReRunMe(1);
 }
 /* USER CODE END 0 */
 
@@ -155,7 +158,7 @@ int main(void)
 
 	Task B;
 	B.priority = 2;
-	B.func_ptr = measureDist;
+	B.func_ptr = sendToBuzz;
 	B.Task_name = "Task B";
   /* USER CODE END 1 */
 
@@ -184,18 +187,16 @@ int main(void)
 	Init();
 	QueTask(A);
 	QueTask(B);
-//HAL_SYSTICK_Config(0x3D08CE);//79999*50
+	//HAL_SYSTICK_Config(0x3D08CE);//79999*50
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+		Dispatch();
     /* USER CODE END WHILE */
-
     /* USER CODE BEGIN 3 */
-
-	Dispatch();
   }
   /* USER CODE END 3 */
 }
